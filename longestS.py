@@ -1,15 +1,10 @@
-def longestS(st):
-    list = []
-    sub = ""
-    for s in st:
-        if s not in sub:
-            sub += s
-        else:
-            list.append(sub)
-            sub = s
-    return max(list, key=len)
+def lengthOfLongestSubstring(s):
+    start, longest, dict = 0, 0, {}
+    for ind, c in enumerate(s):
+        if c in dict:
+            start = max(start, dict[c] + 1)
+        dict[c] = ind
+        longest = max(longest, ind-start + 1)            
+    return longest
 
 
-print(longestS("bbbbb"))
-print(longestS("pwwkew"))
-print(longestS("abcabcbb"))
